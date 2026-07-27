@@ -246,6 +246,37 @@ input,textarea{
 }
 input:focus,textarea:focus{border-color:rgba(200,155,75,.7);box-shadow:0 0 0 4px rgba(200,155,75,.11)}
 
+.catalog-filters{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 28px}
+.catalog-filter{padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.7);font:inherit;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease}
+.catalog-filter:hover{background:#fff;transform:translateY(-1px)}
+.catalog-filter.active{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;border-color:transparent;box-shadow:0 12px 26px rgba(138,100,46,.22)}
+
+.catalog-carousel{position:relative}
+.catalog-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}
+.catalog-track::-webkit-scrollbar{display:none}
+.catalog-card{scroll-snap-align:start;flex:0 0 calc(25% - 13.5px);cursor:pointer;border:0;background:transparent;padding:0;text-align:left;font:inherit}
+.catalog-card-image{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:#ddd;box-shadow:0 14px 34px rgba(33,27,23,.1)}
+.catalog-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.catalog-card:hover .catalog-card-image img,.catalog-card:focus-visible .catalog-card-image img{transform:scale(1.05)}
+.catalog-card-info{padding:14px 2px 0}
+.catalog-card-info strong{display:block;font-size:16px;margin-bottom:2px}
+.catalog-card-info span{font-size:12px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+
+.catalog-arrow{position:absolute;top:calc(50% - 10px);transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 14px 30px rgba(33,27,23,.1);z-index:4;color:var(--ink);font-size:20px;line-height:1;transition:transform .2s ease, box-shadow .2s ease}
+.catalog-arrow:hover{transform:translateY(-50%) scale(1.06);box-shadow:0 18px 38px rgba(33,27,23,.16)}
+.catalog-arrow-prev{left:-12px}
+.catalog-arrow-next{right:-12px}
+
+.catalog-modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
+.catalog-modal.open{display:flex}
+.catalog-modal-backdrop{position:absolute;inset:0;background:rgba(20,15,11,.72);backdrop-filter:blur(6px)}
+.catalog-modal-box{position:relative;z-index:1;background:var(--paper);border-radius:32px;overflow:hidden;max-width:880px;width:100%;max-height:88vh;display:grid;grid-template-columns:1.1fr 1fr;box-shadow:0 40px 100px rgba(0,0,0,.35)}
+.catalog-modal-box img{width:100%;height:100%;object-fit:cover;display:block;background:#ddd}
+.catalog-modal-info{padding:38px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;justify-content:center}
+.catalog-modal-info h3{font-size:clamp(24px,3vw,32px);margin:0}
+.catalog-modal-info p{font-size:15px}
+.catalog-modal-close{position:absolute;top:16px;right:16px;z-index:2;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--line);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+
 footer{padding:58px 0 90px}
 .footer-grid{padding-top:30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:30px;color:var(--muted)}
 
@@ -277,6 +308,7 @@ footer{padding:58px 0 90px}
   .steps{grid-template-columns:repeat(2,1fr)}
   .more-projects{grid-template-columns:1fr 1fr}
   .premium-grid{grid-template-columns:1fr}
+  .catalog-card{flex:0 0 calc(33.333% - 12px)}
 }
 
 @media(max-width:680px){
@@ -298,6 +330,13 @@ footer{padding:58px 0 90px}
   .cta-box{padding:30px 22px;border-radius:28px}
   .footer-grid{flex-direction:column}
   .hero-actions .button{width:100%}
+  .catalog-card{flex:0 0 76%}
+  .catalog-arrow{width:38px;height:38px;font-size:16px}
+  .catalog-arrow-prev{left:4px}
+  .catalog-arrow-next{right:4px}
+  .catalog-modal-box{grid-template-columns:1fr;max-height:92vh;overflow-y:auto}
+  .catalog-modal-box img{max-height:42vh}
+  .catalog-modal-info{padding:26px}
 }
 
 @media(prefers-reduced-motion:reduce){

@@ -44,9 +44,10 @@
       </button>
 
       <nav class="nav-links" id="siteNav" aria-label="Navegação principal">
-        <a href="#projetos">Projetos</a>
         <a href="#servicos">Serviços</a>
         <a href="#processo">Como funciona</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#catalogo">Catálogo</a>
         <a href="#orcamento">Orçamento</a>
       </nav>
 
@@ -94,7 +95,7 @@
       </div>
     </section>
 
-    <section class="section story-section">
+    <section class="section story-section" id="empresa">
       <div class="container">
         <div class="story-card reveal">
           <div class="story-content">
@@ -174,44 +175,6 @@
       </div>
     </section>
 
-    <section class="section portfolio" id="projetos">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <span class="eyebrow">Projetos reais</span>
-            <h2>Nosso trabalho fala em detalhes e personalidade.</h2>
-          </div>
-          <p>Ambientes executados pela Marmoraria Filhos do Rei, com soluções pensadas para uso, durabilidade e estética.</p>
-        </div>
-
-        <div class="gallery reveal">
-          <article class="project project-large">
-            <img src="assets/cozinha-completa.webp" alt="Cozinha completa com bancadas e ilha" loading="lazy" decoding="async">
-            <div class="project-caption">
-              <small>Cozinha completa</small>
-              <strong>Bancadas, mesa e ilha central</strong>
-            </div>
-          </article>
-
-          <article class="project">
-            <img src="assets/area-gourmet.webp" alt="Área gourmet com ilha em granito preto" loading="lazy" decoding="async">
-            <div class="project-caption">
-              <small>Área gourmet</small>
-              <strong>Ilha e bancada em pedra escura</strong>
-            </div>
-          </article>
-
-          <article class="project">
-            <img src="assets/piscina.webp" alt="Piscina com acabamento em pedra" loading="lazy" decoding="async">
-            <div class="project-caption">
-              <small>Área externa</small>
-              <strong>Acabamento para piscina</strong>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="servicos">
       <div class="container">
         <div class="section-heading reveal">
@@ -252,6 +215,44 @@
       </div>
     </section>
 
+    <section class="section portfolio" id="projetos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Projetos reais</span>
+            <h2>Nosso trabalho fala em detalhes e personalidade.</h2>
+          </div>
+          <p>Ambientes executados pela Marmoraria Filhos do Rei, com soluções pensadas para uso, durabilidade e estética.</p>
+        </div>
+
+        <div class="gallery reveal">
+          <article class="project project-large">
+            <img src="assets/cozinha-completa.webp" alt="Cozinha completa com bancadas e ilha" loading="lazy" decoding="async">
+            <div class="project-caption">
+              <small>Cozinha completa</small>
+              <strong>Bancadas, mesa e ilha central</strong>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="assets/area-gourmet.webp" alt="Área gourmet com ilha em granito preto" loading="lazy" decoding="async">
+            <div class="project-caption">
+              <small>Área gourmet</small>
+              <strong>Ilha e bancada em pedra escura</strong>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="assets/piscina.webp" alt="Piscina com acabamento em pedra" loading="lazy" decoding="async">
+            <div class="project-caption">
+              <small>Área externa</small>
+              <strong>Acabamento para piscina</strong>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <div class="section-heading reveal">
@@ -266,6 +267,32 @@
           <img src="assets/banheiro-branco.webp" alt="Banheiro com bancada branca e nicho" loading="lazy" decoding="async">
           <img src="assets/banheiro-granito.webp" alt="Banheiro com bancada de granito escuro" loading="lazy" decoding="async">
           <img src="assets/cozinha-ilha.webp" alt="Cozinha com ilha central em pedra natural" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="section catalog-section" id="catalogo">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Catálogo de pedras</span>
+            <h2>Mármores, granitos e quartzitos para todo tipo de projeto.</h2>
+          </div>
+          <p>Conheça algumas das pedras que trabalhamos. Clique em qualquer peça para ver em detalhe e solicitar seu orçamento.</p>
+        </div>
+
+        <div class="catalog-filters reveal" id="catalogFilters" role="tablist" aria-label="Filtrar pedras por categoria">
+          <button class="catalog-filter active" data-filter="todos" type="button">Todos</button>
+          <button class="catalog-filter" data-filter="granitos" type="button">Granitos</button>
+          <button class="catalog-filter" data-filter="marmores" type="button">Mármores</button>
+          <button class="catalog-filter" data-filter="quartzitos" type="button">Quartzitos</button>
+          <button class="catalog-filter" data-filter="acabamentos" type="button">Acabamentos</button>
+        </div>
+
+        <div class="catalog-carousel reveal">
+          <button class="catalog-arrow catalog-arrow-prev" type="button" aria-label="Ver pedras anteriores">&#8249;</button>
+          <div class="catalog-track" id="catalogTrack"></div>
+          <button class="catalog-arrow catalog-arrow-next" type="button" aria-label="Ver próximas pedras">&#8250;</button>
         </div>
       </div>
     </section>
@@ -307,6 +334,20 @@
       <div>© <span id="year"></span> Filhos do Rei.</div>
     </div>
   </footer>
+
+  <div class="catalog-modal" id="catalogModal" aria-hidden="true">
+    <div class="catalog-modal-backdrop" data-modal-close></div>
+    <div class="catalog-modal-box" role="dialog" aria-modal="true" aria-labelledby="catalogModalTitle">
+      <button class="catalog-modal-close" type="button" data-modal-close aria-label="Fechar">&times;</button>
+      <img id="catalogModalImage" src="" alt="">
+      <div class="catalog-modal-info">
+        <span class="eyebrow" id="catalogModalCategory">Granito</span>
+        <h3 id="catalogModalTitle">Nome da pedra</h3>
+        <p>Fale com a gente e receba um orçamento sob medida para essa pedra.</p>
+        <a class="button button-primary" id="catalogModalWhatsapp" href="#" target="_blank" rel="noopener">Solicitar orçamento</a>
+      </div>
+    </div>
+  </div>
 
   <a class="floating-whatsapp"
      href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."

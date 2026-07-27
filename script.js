@@ -92,151 +92,219 @@ if (budgetForm) {
   });
 }
 
-const CATALOG_CATEGORY_LABELS = {
-  granitos: 'Granito',
-  marmores: 'Mármore',
-  quartzitos: 'Quartzito',
-  acabamentos: 'Acabamento'
-};
+/* Catálogo de Pedras — carrossel montado 100% via JS a partir de assets/carrossel/ */
+(() => {
+  const CATALOG_FOLDER = 'assets/carrossel/';
+  const CATALOG_FILES = [
+    'branco-carrara.webp',
+    'branco-siena.webp',
+    'branco-dallas.webp',
+    'branco-itaunas.webp',
+    'branco-prime.webp',
+    'mont-blanc.webp'
+  ];
 
-const CATALOG_STONES = [
-  { id: 1, name: 'Nanoglass', category: 'acabamentos' },
-  { id: 2, name: 'Via Láctea', category: 'granitos' },
-  { id: 3, name: 'Café Imperial', category: 'granitos' },
-  { id: 4, name: 'Branco Itaúnas', category: 'granitos' },
-  { id: 5, name: 'Branco Siena', category: 'granitos' },
-  { id: 6, name: 'Cinza Corumbá', category: 'granitos' },
-  { id: 7, name: 'Calacatta', category: 'marmores' },
-  { id: 8, name: 'Branco Dallas', category: 'granitos' },
-  { id: 9, name: 'Preto São Gabriel', category: 'granitos' },
-  { id: 10, name: 'Travertino Navona', category: 'marmores' },
-  { id: 11, name: 'Crema Marfil', category: 'marmores' },
-  { id: 12, name: 'Branco Dallas com Bordeaux', category: 'granitos' },
-  { id: 13, name: 'Ônix Verde', category: 'marmores' },
-  { id: 14, name: 'Bianco Gioia', category: 'marmores' },
-  { id: 15, name: 'Mármore Carrara', category: 'marmores' },
-  { id: 16, name: 'White Prime', category: 'quartzitos' },
-  { id: 17, name: 'Piguês', category: 'quartzitos' },
-  { id: 18, name: 'Verde Ubatuba', category: 'granitos' },
-  { id: 19, name: 'Branco Paraná', category: 'granitos' },
-  { id: 20, name: 'Preto Absoluto', category: 'granitos' },
-  { id: 21, name: 'Titanium Gold', category: 'granitos' },
-  { id: 22, name: 'Cinza Andorinha', category: 'granitos' },
-  { id: 23, name: 'Branco Fortaleza', category: 'granitos' },
-  { id: 24, name: 'Ouro Brasil', category: 'granitos' },
-  { id: 25, name: 'Amarelo Icaraí', category: 'granitos' },
-  { id: 26, name: 'Nero Marquina', category: 'marmores' },
-  { id: 27, name: 'Quartzito Verde', category: 'quartzitos' },
-  { id: 28, name: 'Ônix Branco', category: 'marmores' },
-  { id: 29, name: 'Juparaná Bordeaux', category: 'granitos' },
-  { id: 30, name: 'Giallo Ornamental', category: 'granitos' }
-];
+  const carousel = document.getElementById('catalogCarousel');
+  const track = document.getElementById('catalogTrack');
+  const dotsWrap = document.getElementById('catalogDots');
+  const modal = document.getElementById('catalogModal');
 
-const catalogTrack = document.getElementById('catalogTrack');
-const catalogFilters = document.getElementById('catalogFilters');
-const catalogModal = document.getElementById('catalogModal');
+  if (!carousel || !track || !modal) return;
 
-if (catalogTrack && catalogFilters && catalogModal) {
-  const catalogPrev = document.querySelector('.catalog-arrow-prev');
-  const catalogNext = document.querySelector('.catalog-arrow-next');
-  const catalogModalImage = document.getElementById('catalogModalImage');
-  const catalogModalTitle = document.getElementById('catalogModalTitle');
-  const catalogModalCategory = document.getElementById('catalogModalCategory');
-  const catalogModalWhatsapp = document.getElementById('catalogModalWhatsapp');
+  const prevBtn = carousel.querySelector('.catalog-arrow-prev');
+  const nextBtn = carousel.querySelector('.catalog-arrow-next');
+  const modalImage = document.getElementById('catalogModalImage');
+  const modalPrevBtn = modal.querySelector('.catalog-modal-prev');
+  const modalNextBtn = modal.querySelector('.catalog-modal-next');
 
-  const stoneImage = (stone) => `assets/pedras/${stone.id}.webp`;
+  const stones = CATALOG_FILES.map((file) => ({ file, src: CATALOG_FOLDER + file }));
+  const total = stones.length;
 
-  const openCatalogModal = (stone) => {
-    catalogModalImage.src = stoneImage(stone);
-    catalogModalImage.alt = stone.name;
-    catalogModalTitle.textContent = stone.name;
-    catalogModalCategory.textContent = CATALOG_CATEGORY_LABELS[stone.category];
+  let currentIndex = 0;
+  let modalIndex = 0;
+  const dots = [];
 
-    const message = `Olá! Tenho interesse na pedra ${stone.name} e gostaria de solicitar um orçamento.`;
-    catalogModalWhatsapp.href = `https://wa.me/5562994745438?text=${encodeURIComponent(message)}`;
+  /* --- monta os cards dinamicamente --- */
+  stones.forEach((stone, index) => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'catalog-card';
+    card.setAttribute('aria-label', `Ampliar imagem da pedra ${index + 1}`);
 
-    catalogModal.classList.add('open');
-    catalogModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
+    const imageWrap = document.createElement('div');
+    imageWrap.className = 'catalog-card-image';
 
-  const closeCatalogModal = () => {
-    catalogModal.classList.remove('open');
-    catalogModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
+    const img = document.createElement('img');
+    img.src = stone.src;
+    img.alt = `Pedra ${index + 1} do catálogo`;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.width = 640;
+    img.height = 960;
+    img.draggable = false;
 
-  catalogModal.querySelectorAll('[data-modal-close]').forEach((element) => {
-    element.addEventListener('click', closeCatalogModal);
+    imageWrap.appendChild(img);
+    card.appendChild(imageWrap);
+    card.addEventListener('click', () => {
+      if (track.dataset.dragged === 'true') return;
+      openModal(index);
+    });
+
+    track.appendChild(card);
   });
+
+  /* --- indicadores --- */
+  stones.forEach((stone, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'catalog-dot';
+    dot.setAttribute('aria-label', `Ir para pedra ${index + 1}`);
+    dot.addEventListener('click', () => goToIndex(index));
+    dotsWrap.appendChild(dot);
+    dots.push(dot);
+  });
+
+  const updateDots = (index) => {
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  };
+
+  const getStep = () => {
+    const card = track.querySelector('.catalog-card');
+    if (!card) return 300;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 20;
+    return card.getBoundingClientRect().width + gap;
+  };
+
+  function goToIndex(index) {
+    currentIndex = ((index % total) + total) % total;
+    track.scrollTo({ left: currentIndex * getStep(), behavior: 'smooth' });
+    updateDots(currentIndex);
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => { goToIndex(currentIndex - 1); restartAutoplay(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { goToIndex(currentIndex + 1); restartAutoplay(); });
+
+  let scrollSettleTimeout;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollSettleTimeout);
+    scrollSettleTimeout = setTimeout(() => {
+      const step = getStep();
+      const index = Math.round(track.scrollLeft / step);
+      currentIndex = Math.max(0, Math.min(total - 1, index));
+      updateDots(currentIndex);
+    }, 120);
+  }, { passive: true });
+
+  updateDots(0);
+
+  /* --- arrastar com o mouse (desktop) --- */
+  let isPointerDown = false;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+  const DRAG_THRESHOLD = 5;
+
+  track.addEventListener('pointerdown', (event) => {
+    if (event.pointerType !== 'mouse') return;
+    isPointerDown = true;
+    isDragging = false;
+    track.dataset.dragged = 'false';
+    dragStartX = event.clientX;
+    dragStartScroll = track.scrollLeft;
+    stopAutoplay();
+  });
+
+  track.addEventListener('pointermove', (event) => {
+    if (!isPointerDown || event.pointerType !== 'mouse') return;
+    const delta = event.clientX - dragStartX;
+
+    if (!isDragging) {
+      if (Math.abs(delta) < DRAG_THRESHOLD) return;
+      isDragging = true;
+      track.dataset.dragged = 'true';
+      track.classList.add('dragging');
+      track.setPointerCapture(event.pointerId);
+    }
+
+    track.scrollLeft = dragStartScroll - delta;
+  });
+
+  const endDrag = (event) => {
+    if (event && event.pointerType && event.pointerType !== 'mouse') return;
+    isPointerDown = false;
+    if (isDragging) {
+      isDragging = false;
+      track.classList.remove('dragging');
+    }
+    restartAutoplay();
+    window.setTimeout(() => { track.dataset.dragged = 'false'; }, 50);
+  };
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointerleave', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  /* --- autoplay lento, pausa ao passar o mouse --- */
+  const AUTOPLAY_DELAY = 4000;
+  let autoplayTimer = null;
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = window.setInterval(() => goToIndex(currentIndex + 1), AUTOPLAY_DELAY);
+  }
+  function stopAutoplay() {
+    if (autoplayTimer) window.clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  }
+  function restartAutoplay() {
+    stopAutoplay();
+    startAutoplay();
+  }
+
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+  carousel.addEventListener('touchstart', stopAutoplay, { passive: true });
+
+  startAutoplay();
+
+  /* --- modal / lightbox --- */
+  function renderModalImage() {
+    const stone = stones[modalIndex];
+    modalImage.src = stone.src;
+    modalImage.alt = `Pedra ${modalIndex + 1} ampliada`;
+  }
+
+  function openModal(index) {
+    modalIndex = ((index % total) + total) % total;
+    renderModalImage();
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    stopAutoplay();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    startAutoplay();
+  }
+
+  function modalStep(direction) {
+    modalIndex = ((modalIndex + direction) % total + total) % total;
+    renderModalImage();
+  }
+
+  modal.querySelectorAll('[data-modal-close]').forEach((element) => {
+    element.addEventListener('click', closeModal);
+  });
+
+  if (modalPrevBtn) modalPrevBtn.addEventListener('click', () => modalStep(-1));
+  if (modalNextBtn) modalNextBtn.addEventListener('click', () => modalStep(1));
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeCatalogModal();
+    if (!modal.classList.contains('open')) return;
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'ArrowLeft') modalStep(-1);
+    if (event.key === 'ArrowRight') modalStep(1);
   });
-
-  const renderCatalog = (filter) => {
-    catalogTrack.innerHTML = '';
-    const items = filter === 'todos'
-      ? CATALOG_STONES
-      : CATALOG_STONES.filter((stone) => stone.category === filter);
-
-    items.forEach((stone) => {
-      const card = document.createElement('button');
-      card.type = 'button';
-      card.className = 'catalog-card';
-      card.setAttribute('aria-label', `Ver detalhes de ${stone.name}`);
-
-      const imageWrap = document.createElement('div');
-      imageWrap.className = 'catalog-card-image';
-
-      const img = document.createElement('img');
-      img.src = stoneImage(stone);
-      img.alt = stone.name;
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.width = 640;
-      img.height = 800;
-      imageWrap.appendChild(img);
-
-      const info = document.createElement('div');
-      info.className = 'catalog-card-info';
-
-      const title = document.createElement('strong');
-      title.textContent = stone.name;
-
-      const category = document.createElement('span');
-      category.textContent = CATALOG_CATEGORY_LABELS[stone.category];
-
-      info.appendChild(title);
-      info.appendChild(category);
-
-      card.appendChild(imageWrap);
-      card.appendChild(info);
-      card.addEventListener('click', () => openCatalogModal(stone));
-
-      catalogTrack.appendChild(card);
-    });
-
-    catalogTrack.scrollTo({ left: 0, behavior: 'auto' });
-  };
-
-  catalogFilters.querySelectorAll('.catalog-filter').forEach((button) => {
-    button.addEventListener('click', () => {
-      catalogFilters.querySelectorAll('.catalog-filter').forEach((btn) => btn.classList.remove('active'));
-      button.classList.add('active');
-      renderCatalog(button.dataset.filter);
-    });
-  });
-
-  const scrollCatalog = (direction) => {
-    const card = catalogTrack.querySelector('.catalog-card');
-    const gap = 18;
-    const amount = card ? card.getBoundingClientRect().width + gap : 300;
-    catalogTrack.scrollBy({ left: direction * amount, behavior: 'smooth' });
-  };
-
-  if (catalogPrev) catalogPrev.addEventListener('click', () => scrollCatalog(-1));
-  if (catalogNext) catalogNext.addEventListener('click', () => scrollCatalog(1));
-
-  renderCatalog('todos');
-}
+})();

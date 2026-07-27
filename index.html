@@ -273,26 +273,21 @@
 
     <section class="section catalog-section" id="catalogo">
       <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <span class="eyebrow">Catálogo de pedras</span>
-            <h2>Mármores, granitos e quartzitos para todo tipo de projeto.</h2>
-          </div>
-          <p>Conheça algumas das pedras que trabalhamos. Clique em qualquer peça para ver em detalhe e solicitar seu orçamento.</p>
+        <div class="section-heading catalog-heading reveal">
+          <h2>Catálogo de Pedras</h2>
+          <p>Conheça algumas das pedras disponíveis para transformar o seu projeto.</p>
         </div>
 
-        <div class="catalog-filters reveal" id="catalogFilters" role="tablist" aria-label="Filtrar pedras por categoria">
-          <button class="catalog-filter active" data-filter="todos" type="button">Todos</button>
-          <button class="catalog-filter" data-filter="granitos" type="button">Granitos</button>
-          <button class="catalog-filter" data-filter="marmores" type="button">Mármores</button>
-          <button class="catalog-filter" data-filter="quartzitos" type="button">Quartzitos</button>
-          <button class="catalog-filter" data-filter="acabamentos" type="button">Acabamentos</button>
-        </div>
-
-        <div class="catalog-carousel reveal">
-          <button class="catalog-arrow catalog-arrow-prev" type="button" aria-label="Ver pedras anteriores">&#8249;</button>
+        <div class="catalog-carousel reveal" id="catalogCarousel">
+          <button class="catalog-arrow catalog-arrow-prev" type="button" aria-label="Ver pedra anterior">&#8249;</button>
           <div class="catalog-track" id="catalogTrack"></div>
-          <button class="catalog-arrow catalog-arrow-next" type="button" aria-label="Ver próximas pedras">&#8250;</button>
+          <button class="catalog-arrow catalog-arrow-next" type="button" aria-label="Ver próxima pedra">&#8250;</button>
+        </div>
+
+        <div class="catalog-dots" id="catalogDots"></div>
+
+        <div class="catalog-cta">
+          <a class="button button-primary" href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener">Solicitar orçamento</a>
         </div>
       </div>
     </section>
@@ -320,7 +315,13 @@
               <span>Conte o que deseja fazer</span>
               <textarea id="project" rows="5" required></textarea>
             </label>
-            <button class="button button-primary" type="submit">Enviar pelo WhatsApp</button>
+            <button class="button button-primary" type="submit">
+              <svg class="whatsapp-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12.004 2C6.486 2 2.01 6.477 2.01 11.996c0 2.116.674 4.076 1.822 5.677L2 22l4.462-1.796a9.94 9.94 0 0 0 5.542 1.674c5.518 0 9.995-4.477 9.995-9.996S17.522 2 12.004 2zm0 18.09a8.06 8.06 0 0 1-4.312-1.24l-.31-.19-3.207 1.29.955-3.222-.203-.318a8.062 8.062 0 0 1-1.24-4.312c0-4.462 3.63-8.09 8.09-8.09 4.462 0 8.09 3.628 8.09 8.09 0 4.462-3.628 8.09-8.09 8.09z"/>
+              </svg>
+              Enviar pelo WhatsApp
+            </button>
           </form>
         </div>
       </div>
@@ -337,22 +338,18 @@
 
   <div class="catalog-modal" id="catalogModal" aria-hidden="true">
     <div class="catalog-modal-backdrop" data-modal-close></div>
-    <div class="catalog-modal-box" role="dialog" aria-modal="true" aria-labelledby="catalogModalTitle">
+    <div class="catalog-modal-box" role="dialog" aria-modal="true" aria-label="Imagem ampliada da pedra">
       <button class="catalog-modal-close" type="button" data-modal-close aria-label="Fechar">&times;</button>
+      <button class="catalog-modal-nav catalog-modal-prev" type="button" aria-label="Pedra anterior">&#8249;</button>
       <img id="catalogModalImage" src="" alt="">
-      <div class="catalog-modal-info">
-        <span class="eyebrow" id="catalogModalCategory">Granito</span>
-        <h3 id="catalogModalTitle">Nome da pedra</h3>
-        <p>Fale com a gente e receba um orçamento sob medida para essa pedra.</p>
-        <a class="button button-primary" id="catalogModalWhatsapp" href="#" target="_blank" rel="noopener">Solicitar orçamento</a>
-      </div>
+      <button class="catalog-modal-nav catalog-modal-next" type="button" aria-label="Próxima pedra">&#8250;</button>
     </div>
   </div>
 
-  <a class="floating-whatsapp"
+  <a class="whatsapp-float"
      href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
-     target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
-    ☎
+     target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp">
+    <img src="assets/whatsapp-3d.png" alt="WhatsApp">
   </a>
 
   <script src="script.js"></script>

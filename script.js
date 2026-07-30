@@ -381,32 +381,106 @@ if (finderChips && finderText) {
   const AMBIENTES_FOLDER = 'assets/ambientes/';
   const AMBIENTES_CATEGORIES = [
     { label: 'Sala', files: ['bege bahia 1.webp', 'bege bahia 2.webp', 'bege bahia 3.webp'] },
-    { label: 'Cozinha', files: ['539fd3f9-38b4-459c-9674-9b3822d3aca8.webp', 'angulo.webp', 'angulo1.webp', 'angulo 2.webp'] },
-    { label: 'Banheiro', files: ['verde ubatuba banheiro 1.webp', 'VERDE UBATUBA 2.webp', 'VERDE UBATUBA 3.webp'] },
-    { label: 'Área Gourmet', files: ['preto são gabriel.webp', 'preto são gabriel 2.webp', 'preto são gabriel 3.webp'] },
+    { label: 'Cozinha', files: ['539fd3f9-38b4-459c-9674-9b3822d3aca8.webp', 'angulo.webp', 'angulo1.webp', 'angulo 2.webp', 'ilha 2.webp', 'marrom imperador 1.webp', 'marrom imperador 3.webp'] },
+    { label: 'Banheiro', files: ['verde ubatuba banheiro 1.webp', 'VERDE UBATUBA 2.webp', 'VERDE UBATUBA 3.webp', 'nicho 1.webp', 'nicho 2.webp'] },
+    { label: 'Área Gourmet', files: ['preto são gabriel.webp', 'preto são gabriel 2.webp', 'preto são gabriel 3.webp', 'ilha gourmet.webp'] },
     { label: 'Escadas', files: ['escaada 1.webp', 'escada 2.webp', 'escada angulo 3.webp'] },
     { label: 'Mesa de Centro', files: ['bege bahia centro de mesa.webp', 'preto indiano.webp', 'quartzo rosa.webp'] },
-    { label: 'Painéis', files: ['preto via lactea 1.webp', 'preto via lactea 2.webp', 'preto via lactea 3.webp'] }
+    { label: 'Painéis', files: ['preto via lactea 1.webp', 'preto via lactea 2.webp', 'preto via lactea 3.webp', 'nicho 3.webp'] }
   ];
+
+  const AMBIENTES_DIMS = {
+    '539fd3f9-38b4-459c-9674-9b3822d3aca8.webp': [1536, 1024],
+    'angulo.webp': [1536, 1024],
+    'angulo1.webp': [1536, 1024],
+    'angulo 2.webp': [1536, 1024],
+    'bege bahia 1.webp': [1536, 1024],
+    'bege bahia 2.webp': [1536, 1024],
+    'bege bahia 3.webp': [1536, 1024],
+    'bege bahia centro de mesa.webp': [1536, 1024],
+    'escaada 1.webp': [1122, 1402],
+    'escada 2.webp': [1122, 1402],
+    'escada angulo 3.webp': [1086, 1448],
+    'ilha 2.webp': [1402, 1122],
+    'ilha gourmet.webp': [1402, 1122],
+    'marrom imperador 1.webp': [1402, 1122],
+    'marrom imperador 3.webp': [1402, 1122],
+    'nicho 1.webp': [1536, 1024],
+    'nicho 2.webp': [1536, 1024],
+    'nicho 3.webp': [1536, 1024],
+    'preto indiano.webp': [1536, 1024],
+    'preto são gabriel.webp': [1536, 1024],
+    'preto são gabriel 2.webp': [1536, 1024],
+    'preto são gabriel 3.webp': [1536, 1024],
+    'preto via lactea 1.webp': [1536, 1024],
+    'preto via lactea 2.webp': [1536, 1024],
+    'preto via lactea 3.webp': [1536, 1024],
+    'quartzo rosa.webp': [1536, 1024],
+    'VERDE UBATUBA 2.webp': [1536, 1024],
+    'VERDE UBATUBA 3.webp': [1536, 1024],
+    'verde ubatuba banheiro 1.webp': [1536, 1024]
+  };
 
   const grid = document.getElementById('inspiringGrid');
   const modal = document.getElementById('inspiringModal');
-  if (!grid || !modal) return;
+  const lightbox = document.getElementById('inspiringLightbox');
+  if (!grid || !modal || !lightbox) return;
 
   const modalTitle = document.getElementById('inspiringModalTitle');
   const modalGallery = document.getElementById('inspiringModalGallery');
+  const lightboxImage = document.getElementById('inspiringLightboxImage');
+  const lightboxPrev = lightbox.querySelector('.inspiring-lightbox-prev');
+  const lightboxNext = lightbox.querySelector('.inspiring-lightbox-next');
 
   const fileUrl = (file) => AMBIENTES_FOLDER + encodeURIComponent(file);
+  const thumbUrl = (file) => AMBIENTES_FOLDER + 'thumbs/' + encodeURIComponent(file);
+  const setDims = (img, file) => {
+    const dims = AMBIENTES_DIMS[file];
+    if (dims) { img.width = dims[0]; img.height = dims[1]; }
+  };
+
+  let activeCategory = null;
+  let lightboxIndex = 0;
+
+  const renderLightboxImage = () => {
+    const file = activeCategory.files[lightboxIndex];
+    lightboxImage.src = fileUrl(file);
+    lightboxImage.alt = `${activeCategory.label} — Marmoraria Filhos do Rei`;
+    setDims(lightboxImage, file);
+  };
+
+  const openLightbox = (category, index) => {
+    activeCategory = category;
+    lightboxIndex = index;
+    renderLightboxImage();
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+  };
+
+  const stepLightbox = (direction) => {
+    if (!activeCategory) return;
+    const total = activeCategory.files.length;
+    lightboxIndex = ((lightboxIndex + direction) % total + total) % total;
+    renderLightboxImage();
+  };
 
   const openInspiringModal = (category) => {
     modalTitle.textContent = category.label;
     modalGallery.innerHTML = '';
-    category.files.forEach((file) => {
+    category.files.forEach((file, index) => {
       const img = document.createElement('img');
       img.src = fileUrl(file);
       img.alt = `${category.label} — Marmoraria Filhos do Rei`;
       img.loading = 'lazy';
       img.decoding = 'async';
+      img.tabIndex = 0;
+      setDims(img, file);
+      img.addEventListener('click', () => openLightbox(category, index));
       modalGallery.appendChild(img);
     });
     modal.classList.add('open');
@@ -427,10 +501,15 @@ if (finderChips && finderText) {
     card.setAttribute('aria-label', `Ver galeria de ${category.label}`);
 
     const img = document.createElement('img');
-    img.src = fileUrl(category.files[0]);
+    img.src = thumbUrl(category.files[0]);
     img.alt = category.label;
     img.loading = 'lazy';
     img.decoding = 'async';
+    const coverDims = AMBIENTES_DIMS[category.files[0]];
+    if (coverDims) {
+      img.width = 600;
+      img.height = Math.round(600 * (coverDims[1] / coverDims[0]));
+    }
 
     const label = document.createElement('span');
     label.className = 'inspiring-card-label';
@@ -447,7 +526,19 @@ if (finderChips && finderText) {
     element.addEventListener('click', closeInspiringModal);
   });
 
+  lightbox.querySelectorAll('[data-lightbox-close]').forEach((element) => {
+    element.addEventListener('click', closeLightbox);
+  });
+  if (lightboxPrev) lightboxPrev.addEventListener('click', () => stepLightbox(-1));
+  if (lightboxNext) lightboxNext.addEventListener('click', () => stepLightbox(1));
+
   document.addEventListener('keydown', (event) => {
+    if (lightbox.classList.contains('open')) {
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') stepLightbox(-1);
+      if (event.key === 'ArrowRight') stepLightbox(1);
+      return;
+    }
     if (event.key === 'Escape' && modal.classList.contains('open')) closeInspiringModal();
   });
 })();

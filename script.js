@@ -3,6 +3,7 @@ const header = document.getElementById('siteHeader');
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('siteNav');
 const budgetForm = document.getElementById('budgetForm');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const setScrolledState = () => {
   if (header) {
@@ -92,6 +93,53 @@ if (budgetForm) {
   });
 }
 
+/* Parallax discreto no hero, desativado se o usuário preferir menos movimento */
+const heroImage = document.getElementById('heroImage');
+if (heroImage && !prefersReducedMotion) {
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      const offset = Math.min(window.scrollY * 0.06, 40);
+      heroImage.style.transform = `translateY(${offset}px) scale(1.08)`;
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
+/* Encontre a pedra ideal */
+const FINDER_RECOMMENDATIONS = {
+  cozinha: 'Cozinhas costumam valorizar granitos e mármores claros do nosso catálogo, como Branco Dallas e Branco Carrara, que trazem clareza e resistência para o dia a dia.',
+  banheiro: 'Para banheiros, peças como Branco Siena e Branco Itaúnas ajudam a criar um visual clean e sofisticado.',
+  gourmet: 'Em áreas gourmet, pedras como Mont Blanc e Branco Dallas dão um toque elegante para bancadas e ilhas.',
+  escada: 'Em escadas, buscamos pedras resistentes e com bom acabamento — fale com a gente para indicar a melhor opção do catálogo para o seu projeto.',
+  bancada: 'Bancadas ganham personalidade com pedras como Branco Prime e Mont Blanc, disponíveis em nosso catálogo.',
+  nicho: 'Nichos costumam usar acabamentos como Branco Prime, trazendo um resultado clean e discreto.'
+};
+
+const finderChips = document.getElementById('finderChips');
+const finderText = document.getElementById('finderText');
+
+if (finderChips && finderText) {
+  const chips = Array.from(finderChips.querySelectorAll('.finder-chip'));
+
+  const selectRoom = (room) => {
+    chips.forEach((chip) => {
+      const isActive = chip.dataset.room === room;
+      chip.classList.toggle('active', isActive);
+      chip.setAttribute('aria-selected', String(isActive));
+    });
+    finderText.textContent = FINDER_RECOMMENDATIONS[room] || '';
+  };
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => selectRoom(chip.dataset.room));
+  });
+
+  selectRoom(chips[0].dataset.room);
+}
+
 /* Catálogo de Pedras — carrossel montado 100% via JS a partir de assets/carrossel/ */
 (() => {
   const CATALOG_FOLDER = 'assets/carrossel/';
@@ -123,6 +171,7 @@ if (budgetForm) {
   let currentIndex = 0;
   let modalIndex = 0;
   const dots = [];
+  const cards = [];
 
   /* --- monta os cards dinamicamente --- */
   stones.forEach((stone, index) => {
@@ -151,6 +200,7 @@ if (budgetForm) {
     });
 
     track.appendChild(card);
+    cards.push(card);
   });
 
   /* --- indicadores --- */
@@ -166,6 +216,20 @@ if (budgetForm) {
 
   const updateDots = (index) => {
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  };
+
+  const updateActiveCard = () => {
+    const trackRect = track.getBoundingClientRect();
+    const center = trackRect.left + trackRect.width / 2;
+    let closest = 0;
+    let closestDist = Infinity;
+    cards.forEach((card, i) => {
+      const r = card.getBoundingClientRect();
+      const cardCenter = r.left + r.width / 2;
+      const dist = Math.abs(cardCenter - center);
+      if (dist < closestDist) { closestDist = dist; closest = i; }
+    });
+    cards.forEach((card, i) => card.classList.toggle('is-active', i === closest));
   };
 
   const getStep = () => {
@@ -186,6 +250,7 @@ if (budgetForm) {
 
   let scrollSettleTimeout;
   track.addEventListener('scroll', () => {
+    updateActiveCard();
     clearTimeout(scrollSettleTimeout);
     scrollSettleTimeout = setTimeout(() => {
       const step = getStep();
@@ -196,6 +261,7 @@ if (budgetForm) {
   }, { passive: true });
 
   updateDots(0);
+  window.requestAnimationFrame(updateActiveCard);
 
   /* --- arrastar com o mouse (desktop) --- */
   let isPointerDown = false;
@@ -248,6 +314,7 @@ if (budgetForm) {
   let autoplayTimer = null;
 
   function startAutoplay() {
+    if (prefersReducedMotion) return;
     stopAutoplay();
     autoplayTimer = window.setInterval(() => goToIndex(currentIndex + 1), AUTOPLAY_DELAY);
   }
@@ -306,5 +373,81 @@ if (budgetForm) {
     if (event.key === 'Escape') closeModal();
     if (event.key === 'ArrowLeft') modalStep(-1);
     if (event.key === 'ArrowRight') modalStep(1);
+  });
+})();
+
+/* Ambientes Inspiradores — cards por categoria com galeria em modal (independente do carrossel de pedras) */
+(() => {
+  const AMBIENTES_FOLDER = 'assets/ambientes/';
+  const AMBIENTES_CATEGORIES = [
+    { label: 'Sala', files: ['bege bahia 1.webp', 'bege bahia 2.webp', 'bege bahia 3.webp'] },
+    { label: 'Cozinha', files: ['539fd3f9-38b4-459c-9674-9b3822d3aca8.webp', 'angulo.webp', 'angulo1.webp', 'angulo 2.webp'] },
+    { label: 'Banheiro', files: ['verde ubatuba banheiro 1.webp', 'VERDE UBATUBA 2.webp', 'VERDE UBATUBA 3.webp'] },
+    { label: 'Área Gourmet', files: ['preto são gabriel.webp', 'preto são gabriel 2.webp', 'preto são gabriel 3.webp'] },
+    { label: 'Escadas', files: ['escaada 1.webp', 'escada 2.webp', 'escada angulo 3.webp'] },
+    { label: 'Mesa de Centro', files: ['bege bahia centro de mesa.webp', 'preto indiano.webp', 'quartzo rosa.webp'] },
+    { label: 'Painéis', files: ['preto via lactea 1.webp', 'preto via lactea 2.webp', 'preto via lactea 3.webp'] }
+  ];
+
+  const grid = document.getElementById('inspiringGrid');
+  const modal = document.getElementById('inspiringModal');
+  if (!grid || !modal) return;
+
+  const modalTitle = document.getElementById('inspiringModalTitle');
+  const modalGallery = document.getElementById('inspiringModalGallery');
+
+  const fileUrl = (file) => AMBIENTES_FOLDER + encodeURIComponent(file);
+
+  const openInspiringModal = (category) => {
+    modalTitle.textContent = category.label;
+    modalGallery.innerHTML = '';
+    category.files.forEach((file) => {
+      const img = document.createElement('img');
+      img.src = fileUrl(file);
+      img.alt = `${category.label} — Marmoraria Filhos do Rei`;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      modalGallery.appendChild(img);
+    });
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeInspiringModal = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  AMBIENTES_CATEGORIES.forEach((category) => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'inspiring-card';
+    card.setAttribute('aria-label', `Ver galeria de ${category.label}`);
+
+    const img = document.createElement('img');
+    img.src = fileUrl(category.files[0]);
+    img.alt = category.label;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+
+    const label = document.createElement('span');
+    label.className = 'inspiring-card-label';
+    label.textContent = category.label;
+
+    card.appendChild(img);
+    card.appendChild(label);
+    card.addEventListener('click', () => openInspiringModal(category));
+
+    grid.appendChild(card);
+  });
+
+  modal.querySelectorAll('[data-inspiring-close]').forEach((element) => {
+    element.addEventListener('click', closeInspiringModal);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('open')) closeInspiringModal();
   });
 })();

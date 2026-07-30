@@ -6,7 +6,7 @@
   <meta name="description" content="Marmoraria Filhos do Rei: bancadas, ilhas, pias, nichos e projetos sob medida em Trindade, Goiânia e todo o Centro-Oeste.">
   <meta name="keywords" content="marmoraria, granito, mármore, bancada, ilha, pedra natural, Trindade, Goiânia">
   <meta name="robots" content="index,follow">
-  <meta name="theme-color" content="#2a2019">
+  <meta name="theme-color" content="#0b0b0b">
   <meta property="og:title" content="Marmoraria Filhos do Rei | Projetos sob medida">
   <meta property="og:description" content="Peças de pedra natural e soluções sob medida para cozinhas, banheiros, áreas gourmet e projetos especiais.">
   <meta property="og:type" content="website">
@@ -34,7 +34,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container nav">
       <a class="brand" href="#inicio" aria-label="Marmoraria Filhos do Rei">
-        <img src="assets/logo.png" alt="Logotipo da Marmoraria Filhos do Rei">
+        <img src="assets/logo.png" alt="Logotipo da Marmoraria Filhos do Rei" width="720" height="455">
       </a>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="siteNav">
@@ -44,10 +44,11 @@
       </button>
 
       <nav class="nav-links" id="siteNav" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#projetos">Projetos</a>
+        <a class="nav-catalog-btn" href="#catalogo">Catálogo</a>
         <a href="#servicos">Serviços</a>
         <a href="#processo">Como funciona</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#catalogo">Catálogo</a>
         <a href="#orcamento">Orçamento</a>
       </nav>
 
@@ -60,41 +61,54 @@
   </header>
 
   <main id="inicio">
+    <!-- 1. HERO -->
     <section class="hero">
-      <img class="hero-image" src="assets/cozinha-ilha.webp" alt="Cozinha com ilha em pedra natural" loading="eager" fetchpriority="high" decoding="async">
+      <img class="hero-image" id="heroImage" src="assets/cozinha-ilha.webp" alt="Cozinha com ilha em pedra natural, projeto real da Marmoraria Filhos do Rei" loading="eager" fetchpriority="high" decoding="async" width="1536" height="2048">
       <div class="hero-overlay"></div>
 
-      <div class="container hero-content reveal">
-        <span class="eyebrow">Trindade — Goiás</span>
-        <h1>Pedras que elevam cada espaço.</h1>
-        <p>Bancadas, ilhas, pias, nichos e peças sob medida, produzidas com cuidado em cada corte, acabamento e detalhe.</p>
+      <div class="container hero-content">
+        <span class="eyebrow reveal">Trindade — Goiás</span>
+        <h1 class="reveal">Pedras que transformam projetos em ambientes únicos.</h1>
+        <p class="reveal">Da escolha do material à instalação, cuidamos de cada detalhe do seu projeto.</p>
 
-        <div class="hero-actions">
+        <div class="hero-actions reveal">
           <a class="button button-primary"
              href="https://wa.me/5562994745438?text=Olá!%20Quero%20solicitar%20um%20orçamento%20para%20meu%20projeto."
              target="_blank" rel="noopener">
             Solicitar orçamento
           </a>
-          <a class="button button-light" href="#projetos">Ver projetos</a>
+          <a class="button button-light" href="#catalogo">Ver catálogo de pedras</a>
         </div>
 
-        <div class="hero-highlights">
-          <article>
-            <strong>Atendimento em todo o Centro-Oeste</strong>
-            <span>Trindade, Goiânia e regiões próximas.</span>
-          </article>
-          <article>
-            <strong>Projetos sob medida</strong>
-            <span>Peças pensadas para cada ambiente e necessidade.</span>
-          </article>
-          <article>
-            <strong>Instalação sob consulta</strong>
-            <span>Planejamento e execução alinhados ao projeto.</span>
-          </article>
+        <p class="hero-trust reveal">Medição no local • Fabricação própria • Instalação especializada</p>
+      </div>
+    </section>
+
+    <!-- 2. FAIXA DE CREDIBILIDADE -->
+    <section class="credibility" aria-label="Números da Marmoraria Filhos do Rei">
+      <div class="container">
+        <div class="credibility-track reveal">
+          <div class="credibility-item">
+            <strong class="metric-number" data-target="6" data-prefix="+">0</strong>
+            <span>anos de experiência</span>
+          </div>
+          <div class="credibility-item">
+            <strong class="metric-number" data-target="30" data-prefix="+">0</strong>
+            <span>obras por mês</span>
+          </div>
+          <div class="credibility-item">
+            <strong class="credibility-text">Trindade, Goiânia e região</strong>
+            <span>Atendimento em todo o Centro-Oeste</span>
+          </div>
+          <div class="credibility-item">
+            <strong class="credibility-text">Medição no local</strong>
+            <span>Um especialista vai até a sua obra</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- 1. (cont.) CONHEÇA A EMPRESA -->
     <section class="section story-section" id="empresa">
       <div class="container">
         <div class="story-card reveal">
@@ -102,79 +116,162 @@
             <span class="eyebrow">Nossa história</span>
             <h2>Uma história construída em pedra, confiança e precisão.</h2>
             <p>Há mais de 6 anos, a Marmoraria Filhos do Rei transforma projetos em ambientes únicos. Nascida em Trindade, Goiás, a empresa cresceu com o compromisso de oferecer qualidade, cuidado e acabamento impecável em cada detalhe.</p>
-            <p>Ao longo dessa trajetória, já foram entregues mais de 5.000 obras, entre cozinhas, banheiros, áreas gourmet, piscinas e projetos especiais sob medida, atendendo Trindade, Goiânia e diversas regiões do Centro-Oeste.</p>
+            <p>Ao longo dessa trajetória, já foram entregues mais de 5.000 obras, entre cozinhas, banheiros, áreas gourmet, piscinas e projetos especiais sob medida.</p>
           </div>
-
-          <div class="story-metrics" aria-label="Números da Marmoraria Filhos do Rei">
-            <article class="metric-card">
-              <strong class="metric-number" data-target="6" data-prefix="+">0</strong>
-              <span>anos de experiência</span>
-            </article>
-            <article class="metric-card">
-              <strong class="metric-number" data-target="5000" data-prefix="+">0</strong>
-              <span>obras entregues</span>
-            </article>
-            <article class="metric-card">
-              <strong class="metric-number" data-target="30" data-prefix="+">0</strong>
-              <span>projetos por mês</span>
-            </article>
-            <article class="metric-card metric-card-wide">
-              <strong class="metric-pill">Centro-Oeste</strong>
-              <span>Atendimento em Trindade, Goiânia e regiões próximas</span>
-            </article>
+          <div class="story-highlight">
+            <strong class="metric-number" data-target="5000" data-prefix="+">0</strong>
+            <span>obras entregues</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section intro">
-      <div class="container intro-grid reveal">
-        <div>
-          <span class="eyebrow">Marmoraria Filhos do Rei</span>
-          <h2>Acabamento refinado para ambientes que merecem presença.</h2>
+    <!-- 2. TRANSFORMAMOS AMBIENTES -->
+    <section class="section editorial-section" id="projetos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Projetos reais</span>
+            <h2>Transformamos ambientes.</h2>
+          </div>
+          <p>Uma seleção de projetos executados pela Marmoraria Filhos do Rei — cada peça pensada para o espaço e o uso do dia a dia.</p>
         </div>
 
-        <div class="intro-copy">
-          <p>Transformamos mármores, granitos e superfícies selecionadas em soluções funcionais, elegantes e duradouras para residências, áreas gourmet, banheiros e projetos comerciais.</p>
+        <div class="editorial-grid reveal">
+          <article class="editorial-item editorial-item-main">
+            <img src="assets/cozinha-completa.webp" alt="Cozinha completa com bancadas e ilha central" loading="lazy" decoding="async" width="900" height="1200">
+            <div class="editorial-overlay">
+              <small>Cozinha</small>
+              <strong>Bancadas, mesa e ilha central</strong>
+              <a class="button button-light" href="https://wa.me/5562994745438?text=Olá!%20Vi%20o%20projeto%20de%20cozinha%20no%20site%20e%20gostaria%20de%20um%20projeto%20parecido." target="_blank" rel="noopener">Quero um projeto assim</a>
+            </div>
+          </article>
 
-          <div class="stats">
-            <article class="stat-card">
-              <strong>Sob medida</strong>
-              <span>Peças pensadas para o seu espaço.</span>
-            </article>
-            <article class="stat-card">
-              <strong>Atendimento amplo</strong>
-              <span>Trindade, Goiânia e Centro-Oeste.</span>
-            </article>
-            <article class="stat-card">
-              <strong>Instalação</strong>
-              <span>Disponível mediante análise e taxa.</span>
-            </article>
+          <article class="editorial-item">
+            <img src="assets/banheiro-granito.webp" alt="Banheiro com bancada de granito escuro" loading="lazy" decoding="async" width="562" height="1000">
+            <div class="editorial-overlay">
+              <small>Banheiro</small>
+              <strong>Bancada em granito escuro</strong>
+              <a class="button button-light" href="https://wa.me/5562994745438?text=Olá!%20Vi%20o%20projeto%20de%20banheiro%20no%20site%20e%20gostaria%20de%20um%20projeto%20parecido." target="_blank" rel="noopener">Quero um projeto assim</a>
+            </div>
+          </article>
+
+          <article class="editorial-item">
+            <img src="assets/area-gourmet.webp" alt="Área gourmet com ilha em pedra escura" loading="lazy" decoding="async" width="915" height="1100">
+            <div class="editorial-overlay">
+              <small>Área gourmet</small>
+              <strong>Ilha e bancada em pedra escura</strong>
+              <a class="button button-light" href="https://wa.me/5562994745438?text=Olá!%20Vi%20o%20projeto%20de%20área%20gourmet%20no%20site%20e%20gostaria%20de%20um%20projeto%20parecido." target="_blank" rel="noopener">Quero um projeto assim</a>
+            </div>
+          </article>
+
+          <article class="editorial-item">
+            <img src="assets/piscina.webp" alt="Área externa com acabamento em pedra" loading="lazy" decoding="async" width="1010" height="1100">
+            <div class="editorial-overlay">
+              <small>Área externa</small>
+              <strong>Acabamento para piscina</strong>
+              <a class="button button-light" href="https://wa.me/5562994745438?text=Olá!%20Vi%20o%20projeto%20de%20área%20externa%20no%20site%20e%20gostaria%20de%20um%20projeto%20parecido." target="_blank" rel="noopener">Quero um projeto assim</a>
+            </div>
+          </article>
+
+          <article class="editorial-item">
+            <img src="assets/banheiro-branco.webp" alt="Banheiro com bancada branca e nicho" loading="lazy" decoding="async" width="1055" height="1280">
+            <div class="editorial-overlay">
+              <small>Banheiro</small>
+              <strong>Bancada branca e nicho</strong>
+              <a class="button button-light" href="https://wa.me/5562994745438?text=Olá!%20Vi%20o%20projeto%20de%20banheiro%20no%20site%20e%20gostaria%20de%20um%20projeto%20parecido." target="_blank" rel="noopener">Quero um projeto assim</a>
+            </div>
+          </article>
+
+          <article class="editorial-item">
+            <img src="assets/cozinha-ilha.webp" alt="Cozinha com ilha central em pedra natural" loading="lazy" decoding="async" width="1536" height="2048">
+            <div class="editorial-overlay">
+              <small>Cozinha</small>
+              <strong>Ilha central em pedra natural</strong>
+              <a class="button button-light" href="https://wa.me/5562994745438?text=Olá!%20Vi%20o%20projeto%20de%20cozinha%20no%20site%20e%20gostaria%20de%20um%20projeto%20parecido." target="_blank" rel="noopener">Quero um projeto assim</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CATÁLOGO -->
+    <!-- AMBIENTES INSPIRADORES -->
+    <section class="section inspiring-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Inspire-se</span>
+            <h2>Ambientes Inspiradores</h2>
+          </div>
+          <p>Explore diferentes espaços transformados com pedra natural e encontre a inspiração para o seu projeto.</p>
+        </div>
+
+        <div class="inspiring-grid reveal" id="inspiringGrid"></div>
+      </div>
+    </section>
+
+    <div class="inspiring-modal" id="inspiringModal" aria-hidden="true">
+      <div class="inspiring-modal-backdrop" data-inspiring-close></div>
+      <div class="inspiring-modal-box" role="dialog" aria-modal="true" aria-labelledby="inspiringModalTitle">
+        <button class="inspiring-modal-close" type="button" data-inspiring-close aria-label="Fechar">&times;</button>
+        <h3 id="inspiringModalTitle"></h3>
+        <div class="inspiring-modal-gallery" id="inspiringModalGallery"></div>
+      </div>
+    </div>
+
+    <section class="section catalog-section" id="catalogo">
+      <div class="container">
+        <div class="section-heading catalog-heading reveal">
+          <h2>Escolha a pedra que combina com seu projeto</h2>
+          <p>Conheça algumas das opções disponíveis e encontre o acabamento ideal para o seu ambiente.</p>
+        </div>
+
+        <div class="catalog-carousel reveal" id="catalogCarousel">
+          <button class="catalog-arrow catalog-arrow-prev" type="button" aria-label="Ver pedra anterior">&#8249;</button>
+          <div class="catalog-track" id="catalogTrack"></div>
+          <button class="catalog-arrow catalog-arrow-next" type="button" aria-label="Ver próxima pedra">&#8250;</button>
+        </div>
+
+        <div class="catalog-dots" id="catalogDots"></div>
+
+        <div class="catalog-cta">
+          <a class="button button-primary" href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20uma%20pedra%20do%20catálogo." target="_blank" rel="noopener">Consultar disponibilidade</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ENCONTRE A PEDRA IDEAL -->
+    <section class="section stone-finder">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Ajuda para escolher</span>
+            <h2>Qual pedra combina com o seu ambiente?</h2>
+          </div>
+          <p>Escolha um ambiente e veja uma sugestão rápida com base no nosso catálogo.</p>
+        </div>
+
+        <div class="finder-chips reveal" id="finderChips" role="tablist">
+          <button class="finder-chip active" type="button" data-room="cozinha" aria-selected="true">Cozinha</button>
+          <button class="finder-chip" type="button" data-room="banheiro" aria-selected="false">Banheiro</button>
+          <button class="finder-chip" type="button" data-room="gourmet" aria-selected="false">Área gourmet</button>
+          <button class="finder-chip" type="button" data-room="escada" aria-selected="false">Escada</button>
+          <button class="finder-chip" type="button" data-room="bancada" aria-selected="false">Bancada</button>
+          <button class="finder-chip" type="button" data-room="nicho" aria-selected="false">Nicho</button>
+        </div>
+
+        <div class="finder-result reveal">
+          <p id="finderText"></p>
+          <div class="finder-actions">
+            <a class="button button-light" href="#catalogo">Ver opções no catálogo</a>
+            <a class="button button-primary" href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20qual%20pedra%20escolher." target="_blank" rel="noopener">Falar com um especialista</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section premium-strip">
-      <div class="container premium-grid reveal">
-        <article class="premium-card">
-          <span>01</span>
-          <h3>Projeto sob medida</h3>
-          <p>Peças desenhadas para o espaço, com proporção e acabamento pensados para cada ambiente.</p>
-        </article>
-        <article class="premium-card">
-          <span>02</span>
-          <h3>Materiais selecionados</h3>
-          <p>Mármore, granito e superfícies com atenção à durabilidade, beleza e presença.</p>
-        </article>
-        <article class="premium-card">
-          <span>03</span>
-          <h3>Execução refinada</h3>
-          <p>Atendimento próximo, comunicação clara e resultado que valoriza o projeto completo.</p>
-        </article>
-      </div>
-    </section>
-
+    <!-- Serviços -->
     <section class="section" id="servicos">
       <div class="container">
         <div class="section-heading reveal">
@@ -196,108 +293,112 @@
       </div>
     </section>
 
-    <section class="section process" id="processo">
+    <!-- 7. PROCESSO DE ATENDIMENTO -->
+    <section class="section timeline-section" id="processo">
       <div class="container">
         <div class="section-heading reveal">
           <div>
             <span class="eyebrow">Como funciona</span>
-            <h2>Um processo simples, do orçamento à entrega.</h2>
+            <h2>Do seu projeto à instalação.</h2>
           </div>
-          <p>Começamos entendendo o espaço e a necessidade. Depois, alinhamos material, medidas, acabamento e condições de instalação.</p>
+          <p>Um processo claro, acompanhado de perto do primeiro contato até a entrega final.</p>
         </div>
 
-        <div class="steps reveal">
-          <article class="step"><b>1</b><h3>Envie seu projeto</h3><p>Fotos, medidas, planta ou referências pelo WhatsApp.</p></article>
-          <article class="step"><b>2</b><h3>Escolha o material</h3><p>Ajudamos a definir pedra, tonalidade e acabamento.</p></article>
-          <article class="step"><b>3</b><h3>Receba o orçamento</h3><p>Apresentamos os valores e detalhes da execução.</p></article>
-          <article class="step"><b>4</b><h3>Produção e instalação</h3><p>A instalação é avaliada de acordo com o projeto e região.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section portfolio" id="projetos">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <span class="eyebrow">Projetos reais</span>
-            <h2>Nosso trabalho fala em detalhes e personalidade.</h2>
+        <div class="timeline">
+          <div class="timeline-step reveal">
+            <span class="timeline-icon">01</span>
+            <h3>Atendimento e orçamento</h3>
+            <p>Você nos conta a ideia; enviamos valores e prazos pelo WhatsApp.</p>
           </div>
-          <p>Ambientes executados pela Marmoraria Filhos do Rei, com soluções pensadas para uso, durabilidade e estética.</p>
-        </div>
-
-        <div class="gallery reveal">
-          <article class="project project-large">
-            <img src="assets/cozinha-completa.webp" alt="Cozinha completa com bancadas e ilha" loading="lazy" decoding="async">
-            <div class="project-caption">
-              <small>Cozinha completa</small>
-              <strong>Bancadas, mesa e ilha central</strong>
-            </div>
-          </article>
-
-          <article class="project">
-            <img src="assets/area-gourmet.webp" alt="Área gourmet com ilha em granito preto" loading="lazy" decoding="async">
-            <div class="project-caption">
-              <small>Área gourmet</small>
-              <strong>Ilha e bancada em pedra escura</strong>
-            </div>
-          </article>
-
-          <article class="project">
-            <img src="assets/piscina.webp" alt="Piscina com acabamento em pedra" loading="lazy" decoding="async">
-            <div class="project-caption">
-              <small>Área externa</small>
-              <strong>Acabamento para piscina</strong>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <span class="eyebrow">Mais ambientes</span>
-            <h2>Versatilidade em cada aplicação.</h2>
+          <div class="timeline-step reveal">
+            <span class="timeline-icon">02</span>
+            <h3>Escolha da pedra</h3>
+            <p>Ajudamos a definir material, tonalidade e acabamento no catálogo.</p>
           </div>
-          <p>Da bancada de um banheiro ao acabamento de uma área de lazer, cada projeto recebe atenção individual.</p>
-        </div>
-
-        <div class="more-projects reveal">
-          <img src="assets/banheiro-branco.webp" alt="Banheiro com bancada branca e nicho" loading="lazy" decoding="async">
-          <img src="assets/banheiro-granito.webp" alt="Banheiro com bancada de granito escuro" loading="lazy" decoding="async">
-          <img src="assets/cozinha-ilha.webp" alt="Cozinha com ilha central em pedra natural" loading="lazy" decoding="async">
-        </div>
-      </div>
-    </section>
-
-    <section class="section catalog-section" id="catalogo">
-      <div class="container">
-        <div class="section-heading catalog-heading reveal">
-          <h2>Catálogo de Pedras</h2>
-          <p>Conheça algumas das pedras disponíveis para transformar o seu projeto.</p>
-        </div>
-
-        <div class="catalog-carousel reveal" id="catalogCarousel">
-          <button class="catalog-arrow catalog-arrow-prev" type="button" aria-label="Ver pedra anterior">&#8249;</button>
-          <div class="catalog-track" id="catalogTrack"></div>
-          <button class="catalog-arrow catalog-arrow-next" type="button" aria-label="Ver próxima pedra">&#8250;</button>
-        </div>
-
-        <div class="catalog-dots" id="catalogDots"></div>
-
-        <div class="catalog-cta">
-          <a class="button button-primary" href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener">Solicitar orçamento</a>
+          <div class="timeline-step reveal">
+            <span class="timeline-icon">03</span>
+            <h3>Medição na obra</h3>
+            <p>Um especialista vai até o local para medir com precisão.</p>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="timeline-icon">04</span>
+            <h3>Produção e acabamento</h3>
+            <p>Corte, encaixes e acabamento produzidos sob medida.</p>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="timeline-icon">05</span>
+            <h3>Entrega e instalação</h3>
+            <p>Instalação especializada, alinhada ao projeto e à região.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section cta-section" id="orcamento">
+    <!-- 8. DIFERENCIAIS -->
+    <section class="section differentials-section">
+      <div class="container differentials-grid reveal">
+        <div class="differentials-text">
+          <span class="eyebrow">Por que a Filhos do Rei</span>
+          <h2>Cuidado em cada etapa, do primeiro contato à instalação.</h2>
+        </div>
+
+        <ul class="differentials-list">
+          <li><span>01</span><div><strong>Medição por especialista</strong><p>Um profissional vai até a obra medir com precisão.</p></div></li>
+          <li><span>02</span><div><strong>Atendimento personalizado</strong><p>Acompanhamento próximo em cada etapa do projeto.</p></div></li>
+          <li><span>03</span><div><strong>Acabamento e encaixes</strong><p>Cuidado com os detalhes que fazem a diferença.</p></div></li>
+          <li><span>04</span><div><strong>Fabricação sob medida</strong><p>Peças pensadas exatamente para o seu espaço.</p></div></li>
+          <li><span>05</span><div><strong>Do orçamento à instalação</strong><p>Acompanhamos o projeto do início ao fim.</p></div></li>
+          <li><span>06</span><div><strong>Experiência diversa</strong><p>Cozinhas, banheiros, áreas externas e projetos especiais.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10. ÁREA DE ATENDIMENTO -->
+    <section class="section service-area-section">
+      <div class="container service-area-grid reveal">
+        <div class="service-area-text">
+          <span class="eyebrow">Onde atendemos</span>
+          <h2>Estamos em Trindade e atendemos projetos em toda a região.</h2>
+          <ul class="area-list">
+            <li>Trindade</li>
+            <li>Goiânia</li>
+            <li>Aparecida de Goiânia</li>
+            <li>Região metropolitana</li>
+            <li>Outras cidades mediante consulta</li>
+          </ul>
+        </div>
+
+        <svg class="area-map" viewBox="0 0 320 260" aria-hidden="true" focusable="false">
+          <line x1="160" y1="130" x2="70" y2="55" />
+          <line x1="160" y1="130" x2="250" y2="60" />
+          <line x1="160" y1="130" x2="80" y2="205" />
+          <line x1="160" y1="130" x2="245" y2="210" />
+          <circle class="area-map-dot area-map-dot-main" cx="160" cy="130" r="9" />
+          <circle class="area-map-dot" cx="70" cy="55" r="5" />
+          <circle class="area-map-dot" cx="250" cy="60" r="5" />
+          <circle class="area-map-dot" cx="80" cy="205" r="5" />
+          <circle class="area-map-dot" cx="245" cy="210" r="5" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- 11. CHAMADA FINAL + FORMULÁRIO -->
+    <section class="section final-cta-section" id="orcamento">
       <div class="container">
+        <div class="final-cta reveal">
+          <span class="eyebrow">Vamos começar</span>
+          <h2>Seu projeto começa com a escolha certa.</h2>
+          <p>Fale com nossa equipe, envie suas medidas ou agende a visita de um especialista à sua obra.</p>
+          <div class="final-cta-actions">
+            <a class="button button-primary" href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener">Solicitar orçamento pelo WhatsApp</a>
+            <a class="button button-light" href="#catalogo">Conhecer o catálogo</a>
+          </div>
+        </div>
+
         <div class="cta-box reveal">
           <div>
-            <span class="eyebrow">Solicite um orçamento</span>
-            <h2>Vamos conversar sobre o seu projeto?</h2>
+            <span class="eyebrow">Ou preencha o formulário</span>
+            <h3>Vamos conversar sobre o seu projeto?</h3>
             <p>Preencha os dados e enviaremos sua mensagem diretamente para o WhatsApp da Marmoraria Filhos do Rei.</p>
             <p class="contact-details"><strong>(62) 99474-5438</strong><br>@marmoraria.fdr<br>Trindade — GO • Atendimento em todo o Centro-Oeste</p>
           </div>
@@ -349,7 +450,7 @@
   <a class="whatsapp-float"
      href="https://wa.me/5562994745438?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
      target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp">
-    <img src="assets/whatsapp-3d.png" alt="WhatsApp">
+    <img src="assets/whatsapp-3d.png" alt="WhatsApp" width="280" height="280">
   </a>
 
   <script src="script.js"></script>

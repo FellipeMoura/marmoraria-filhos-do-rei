@@ -380,13 +380,14 @@ if (finderChips && finderText) {
 (() => {
   const AMBIENTES_FOLDER = 'assets/ambientes/';
   const AMBIENTES_CATEGORIES = [
+    { label: 'Cozinhas', files: ['539fd3f9-38b4-459c-9674-9b3822d3aca8.webp', 'angulo.webp', 'angulo1.webp', 'angulo 2.webp', 'ilha 2.webp', 'marrom imperador 1.webp', 'marrom imperador 3.webp'] },
+    { label: 'Banheiros', files: ['verde ubatuba banheiro 1.webp', 'VERDE UBATUBA 2.webp', 'VERDE UBATUBA 3.webp'] },
+    { label: 'Ilhas Gourmet', files: ['preto são gabriel.webp', 'preto são gabriel 2.webp', 'preto são gabriel 3.webp', 'ilha gourmet.webp'] },
+    { label: 'Nichos', files: ['nicho 1.webp', 'nicho 2.webp', 'nicho 3.webp'] },
+    { label: 'Bancadas', files: ['bege bahia centro de mesa.webp', 'preto indiano.webp', 'quartzo rosa.webp'] },
     { label: 'Sala', files: ['bege bahia 1.webp', 'bege bahia 2.webp', 'bege bahia 3.webp'] },
-    { label: 'Cozinha', files: ['539fd3f9-38b4-459c-9674-9b3822d3aca8.webp', 'angulo.webp', 'angulo1.webp', 'angulo 2.webp', 'ilha 2.webp', 'marrom imperador 1.webp', 'marrom imperador 3.webp'] },
-    { label: 'Banheiro', files: ['verde ubatuba banheiro 1.webp', 'VERDE UBATUBA 2.webp', 'VERDE UBATUBA 3.webp', 'nicho 1.webp', 'nicho 2.webp'] },
-    { label: 'Área Gourmet', files: ['preto são gabriel.webp', 'preto são gabriel 2.webp', 'preto são gabriel 3.webp', 'ilha gourmet.webp'] },
-    { label: 'Escadas', files: ['escaada 1.webp', 'escada 2.webp', 'escada angulo 3.webp'] },
-    { label: 'Mesa de Centro', files: ['bege bahia centro de mesa.webp', 'preto indiano.webp', 'quartzo rosa.webp'] },
-    { label: 'Painéis', files: ['preto via lactea 1.webp', 'preto via lactea 2.webp', 'preto via lactea 3.webp', 'nicho 3.webp'] }
+    { label: 'Painéis', files: ['preto via lactea 1.webp', 'preto via lactea 2.webp', 'preto via lactea 3.webp'] },
+    { label: 'Escadas', files: ['escaada 1.webp', 'escada 2.webp', 'escada angulo 3.webp'] }
   ];
 
   const AMBIENTES_DIMS = {

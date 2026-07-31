@@ -210,39 +210,8 @@ p{margin:0;color:var(--muted)}
 .story-highlight .metric-number{display:block;font-size:clamp(30px,3vw,40px);font-weight:700;color:var(--gold-dark);margin-bottom:6px}
 .story-highlight span{font-size:13px;color:var(--muted)}
 
-/* 3. TRANSFORMAMOS AMBIENTES (editorial) */
 .section-heading{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:42px}
 .section-heading p{max-width:580px}
-
-.editorial-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  grid-auto-rows:150px;
-  gap:16px;
-}
-.editorial-item{position:relative;overflow:hidden;border-radius:24px;background:#141414;box-shadow:var(--shadow)}
-.editorial-item-main{grid-column:span 2;grid-row:span 3}
-.editorial-item:nth-child(2){grid-column:span 2;grid-row:span 2}
-.editorial-item:nth-child(3){grid-column:span 1;grid-row:span 1}
-.editorial-item:nth-child(4){grid-column:span 1;grid-row:span 1}
-.editorial-item:nth-child(5){grid-column:span 2;grid-row:span 2}
-.editorial-item:nth-child(6){grid-column:span 2;grid-row:span 2}
-.editorial-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
-.editorial-item:hover img,.editorial-item:focus-within img{transform:scale(1.06)}
-.editorial-item::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,6,6,.85) 0%,rgba(6,6,6,.15) 55%,transparent 75%);transition:opacity .3s ease}
-.editorial-overlay{
-  position:absolute;left:0;right:0;bottom:0;z-index:2;
-  padding:20px;
-  display:flex;flex-direction:column;gap:8px;align-items:flex-start;
-  color:white;
-}
-.editorial-overlay small{text-transform:uppercase;letter-spacing:.16em;font-size:10px;color:rgba(255,255,255,.7)}
-.editorial-overlay strong{font-size:17px;font-family:"Playfair Display",Georgia,serif}
-.editorial-overlay .button{margin-top:6px;min-height:40px;padding:0 18px;font-size:13px}
-@media(min-width:681px){
-  .editorial-overlay{opacity:0;transform:translateY(14px);transition:opacity .35s ease, transform .35s ease}
-  .editorial-item:hover .editorial-overlay,.editorial-item:focus-within .editorial-overlay{opacity:1;transform:translateY(0)}
-}
 
 /* CATÁLOGO */
 /* AMBIENTES INSPIRADORES */
@@ -322,13 +291,6 @@ p{margin:0;color:var(--muted)}
 .finder-result p{font-size:17px;max-width:640px;color:var(--ink)}
 .finder-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 
-/* Serviços */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
-.service-card{min-height:220px;padding:28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.03);transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease}
-.service-card:hover{transform:translateY(-4px);background:#202020;border-color:rgba(201,154,74,.4);box-shadow:0 20px 52px rgba(0,0,0,.5)}
-.service-card span{display:block;color:var(--gold);font-weight:700;margin-bottom:42px}
-.service-card h3{font-size:21px;margin-bottom:10px}
-
 /* 7. TIMELINE */
 .timeline-section{background:#141414}
 .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:45px}
@@ -355,15 +317,11 @@ p{margin:0;color:var(--muted)}
 .differentials-list li p{font-size:14px}
 
 /* 10. ÁREA DE ATENDIMENTO */
-.service-area-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
-.service-area-text h2{margin-top:14px;max-width:460px}
-.area-list{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 20px}
+.service-area-section{padding:64px 0}
+.service-area-text h2{margin-top:14px;max-width:560px}
+.area-list{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 20px;max-width:480px}
 .area-list li{position:relative;padding-left:20px;font-size:15px;color:var(--ink)}
 .area-list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.area-map{width:100%;height:auto;max-width:340px;justify-self:center}
-.area-map line{stroke:rgba(201,154,74,.4);stroke-width:1;stroke-dasharray:3 4}
-.area-map-dot{fill:var(--gold-dark)}
-.area-map-dot-main{fill:var(--gold);r:9}
 
 /* 11. CHAMADA FINAL */
 .final-cta-section{padding-bottom:32px}
@@ -441,17 +399,11 @@ footer{padding:58px 0 90px}
   .nav-links{display:none;position:absolute;top:calc(100% + 10px);right:0;flex-direction:column;align-items:flex-start;padding:16px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(20,20,20,.98);box-shadow:0 24px 50px rgba(0,0,0,.6)}
   .nav-links.open{display:flex;color:var(--ink)}
   .menu-toggle{display:flex}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
   .cta-box{grid-template-columns:1fr}
   .story-card{grid-template-columns:1fr}
   .story-highlight{justify-self:start}
   .differentials-grid{grid-template-columns:1fr}
-  .service-area-grid{grid-template-columns:1fr}
-  .area-map{max-width:260px}
   .timeline{grid-template-columns:repeat(2,1fr)}
-  .editorial-grid{grid-template-columns:repeat(2,1fr)}
-  .editorial-item-main{grid-column:span 2;grid-row:span 2}
-  .editorial-item:nth-child(2),.editorial-item:nth-child(5),.editorial-item:nth-child(6){grid-column:span 1;grid-row:span 1}
   .catalog-card{flex:0 0 calc(50% - 9px)}
   .inspiring-grid{grid-template-columns:repeat(3,1fr)}
 }
@@ -466,7 +418,7 @@ footer{padding:58px 0 90px}
   .hero-image{object-position:57% center}
   .section-heading{display:block}
   .section-heading p{margin-top:18px}
-  .stats,.services-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
   .story-card{padding:28px 24px}
   .credibility-track{grid-template-columns:repeat(2,1fr);gap:20px 12px}
   .credibility-item:nth-child(3){border-left:0}
@@ -483,8 +435,6 @@ footer{padding:58px 0 90px}
   .catalog-modal-nav{width:38px;height:38px;font-size:16px}
   .catalog-modal-prev{left:6px}
   .catalog-modal-next{right:6px}
-  .editorial-grid{grid-template-columns:1fr;grid-auto-rows:280px;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:6px}
-  .editorial-item{flex:0 0 82%;scroll-snap-align:start;grid-column:auto!important;grid-row:auto!important}
   .timeline{grid-template-columns:1fr}
   .area-list{grid-template-columns:1fr}
   .inspiring-grid{grid-template-columns:repeat(2,1fr)}

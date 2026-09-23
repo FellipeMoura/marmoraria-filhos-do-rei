@@ -514,55 +514,132 @@ if (heroImage && !prefersReducedMotion) {
 
 /* ==========================================================================
    PEDRAS POR AMBIENTE — DADOS (Fase 1)
-   Ainda não conectado a nenhuma tela. Preparação para a próxima etapa:
-   o cliente escolhe um ambiente e vê as pedras recomendadas para ele.
-
-   Cada pedra é ligada aos ambientes em que é tecnicamente indicada, com
-   base nas propriedades típicas do seu material (dureza, porosidade,
-   sensibilidade a ácidos/manchas, exposição a sol e chuva):
-
-   - Granito: altíssima dureza e baixíssima porosidade; boa resistência a
-     ácidos, calor e intempérie. Indicado para todos os ambientes, incluindo
-     bancada de cozinha, área gourmet e área externa.
-   - Quartzito: dureza e resistência a ácidos parecidas com o granito, e
-     também estável ao sol e à chuva. Mesma amplitude de uso do granito.
-   - Mármore: mais poroso e sensível a ácidos (limão, vinagre, produtos de
-     limpeza) e ao sol/chuva prolongados. Indicado para ambientes internos
-     e de menor exposição a ácidos e intempérie (banheiro, lavabo, sala e
-     escadas internas); não recomendado para bancada de cozinha, área
-     gourmet ou área externa.
+   Classificação de material e ambientes revisada e aprovada manualmente,
+   pedra por pedra (não é derivada automaticamente do tipo de material).
+   O campo `material` é uso interno e não é exibido ao cliente nesta etapa.
    ========================================================================== */
 const STONES_FOLDER = 'assets/amostras/';
 
-const STONE_ENVIRONMENTS = ['Cozinha', 'Banheiro', 'Lavabo', 'Área Gourmet', 'Escadas', 'Sala/Decoração', 'Área Externa'];
-
-const ENVIRONMENTS_BY_MATERIAL = {
-  Granito: ['Cozinha', 'Banheiro', 'Lavabo', 'Área Gourmet', 'Escadas', 'Sala/Decoração', 'Área Externa'],
-  Quartzito: ['Cozinha', 'Banheiro', 'Lavabo', 'Área Gourmet', 'Escadas', 'Sala/Decoração', 'Área Externa'],
-  Mármore: ['Banheiro', 'Lavabo', 'Escadas', 'Sala/Decoração'],
-  Quartzo: ['Cozinha', 'Banheiro', 'Lavabo', 'Escadas', 'Sala/Decoração']
-};
+const STONE_ENVIRONMENTS = [
+  { key: 'cozinha', label: 'Cozinha' },
+  { key: 'banheiro', label: 'Banheiro' },
+  { key: 'lavabo', label: 'Lavabo' },
+  { key: 'area-gourmet', label: 'Área Gourmet' },
+  { key: 'escadas', label: 'Escadas' },
+  { key: 'decoracao', label: 'Sala/Decoração' },
+  { key: 'area-externa', label: 'Área Externa' }
+];
 
 const STONES = [
-  { file: 'bege bahia amostra.webp', name: 'Bege Bahia', material: 'Granito' },
-  { file: 'bege bahia escovado amostra.webp', name: 'Bege Bahia Escovado', material: 'Granito' },
-  { file: 'branco carrara amostra.webp', name: 'Branco Carrara', material: 'Mármore' },
-  { file: 'branco dallas amostra.webp', name: 'Branco Dallas', material: 'Quartzito' },
-  { file: 'branco itaunas amostra.webp', name: 'Branco Itaúnas', material: 'Granito' },
-  { file: 'branco monte cristo.webp', name: 'Branco Monte Cristo', material: 'Granito' },
-  { file: 'branco parana amostra.webp', name: 'Branco Paraná', material: 'Granito' },
-  { file: 'branco prime amostra.webp', name: 'Branco Prime', material: 'Quartzito' },
-  { file: 'branco siena amostra.webp', name: 'Branco Siena', material: 'Granito' },
-  { file: 'calacatta gold amostra.webp', name: 'Calacatta Gold', material: 'Mármore' },
-  { file: 'cinza ocre amostra.webp', name: 'Cinza Ocre', material: 'Granito' },
-  { file: 'marrom imperador amostra.webp', name: 'Marrom Imperador', material: 'Mármore' },
-  { file: 'monte blanc amostra.webp', name: 'Monte Blanc', material: 'Quartzito' },
-  { file: 'preto indiano amostra.webp', name: 'Preto Indiano', material: 'Granito' },
-  { file: 'preto sao gabriel escovado amostra.webp', name: 'Preto São Gabriel Escovado', material: 'Granito' },
-  { file: 'preto são gabriel amostra.webp', name: 'Preto São Gabriel', material: 'Granito' },
-  { file: 'preto via lactea amostra.webp', name: 'Preto Via Láctea', material: 'Granito' },
-  { file: 'taj mahal amostra.webp', name: 'Taj Mahal', material: 'Quartzito' },
-  { file: 'verde ubatuba amostra.webp', name: 'Verde Ubatuba', material: 'Granito' },
-  { file: 'vermelho brasilia amostra.webp', name: 'Vermelho Brasília', material: 'Granito' },
-  { file: 'via lactea amostra.webp', name: 'Via Láctea', material: 'Granito' }
-].map((stone) => ({ ...stone, environments: ENVIRONMENTS_BY_MATERIAL[stone.material] }));
+  { file: 'bege bahia amostra.webp', name: 'Bege Bahia', material: 'Mármore', environments: ['banheiro', 'lavabo', 'escadas', 'decoracao'] },
+  { file: 'bege bahia escovado amostra.webp', name: 'Bege Bahia Escovado', material: 'Mármore', environments: ['banheiro', 'lavabo', 'escadas', 'decoracao'] },
+  { file: 'branco carrara amostra.webp', name: 'Branco Carrara', material: 'Mármore', environments: ['banheiro', 'lavabo', 'escadas', 'decoracao'] },
+  { file: 'branco dallas amostra.webp', name: 'Branco Dallas', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'branco itaunas amostra.webp', name: 'Branco Itaúnas', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'branco monte cristo.webp', name: 'Branco Monte Cristo', material: 'A confirmar', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao'] },
+  { file: 'branco parana amostra.webp', name: 'Branco Paraná', material: 'Mármore dolomítico', environments: ['banheiro', 'lavabo', 'escadas', 'decoracao'] },
+  { file: 'branco prime amostra.webp', name: 'Branco Prime', material: 'A confirmar', environments: ['banheiro', 'lavabo', 'escadas', 'decoracao'] },
+  { file: 'branco siena amostra.webp', name: 'Branco Siena', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'calacatta gold amostra.webp', name: 'Calacatta Gold', material: 'Mármore', environments: ['banheiro', 'lavabo', 'escadas', 'decoracao'] },
+  { file: 'cinza ocre amostra.webp', name: 'Cinza Ocre', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'marrom imperador amostra.webp', name: 'Marrom Imperador', material: 'Mármore', environments: ['banheiro', 'lavabo', 'escadas', 'decoracao'] },
+  { file: 'monte blanc amostra.webp', name: 'Mont Blanc', material: 'Quartzito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'preto indiano amostra.webp', name: 'Preto Indiano', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'preto sao gabriel escovado amostra.webp', name: 'Preto São Gabriel Escovado', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'preto são gabriel amostra.webp', name: 'Preto São Gabriel', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'preto via lactea amostra.webp', name: 'Preto Via Láctea', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'taj mahal amostra.webp', name: 'Taj Mahal', material: 'Quartzito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'verde ubatuba amostra.webp', name: 'Verde Ubatuba', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'vermelho brasilia amostra.webp', name: 'Vermelho Brasília', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] },
+  { file: 'via lactea amostra.webp', name: 'Via Láctea', material: 'Granito', environments: ['cozinha', 'banheiro', 'lavabo', 'area-gourmet', 'escadas', 'decoracao', 'area-externa'] }
+];
+
+/* Pedras por ambiente — fluxo: ambiente escolhido -> pedras filtradas (Fase 2) */
+(() => {
+  const flowButton = document.getElementById('stonesFlowButton');
+  const modal = document.getElementById('stonesModal');
+  const envChips = document.getElementById('stonesEnvChips');
+  const stepEnv = document.getElementById('stonesStepEnv');
+  const stepResult = document.getElementById('stonesStepResult');
+  const modalTitle = document.getElementById('stonesModalTitle');
+  const grid = document.getElementById('stonesGrid');
+  const backButton = document.getElementById('stonesBackButton');
+  if (!flowButton || !modal || !envChips || !stepEnv || !stepResult || !modalTitle || !grid || !backButton) return;
+
+  const stoneUrl = (file) => STONES_FOLDER + encodeURIComponent(file);
+
+  const showEnvStep = () => {
+    stepResult.hidden = true;
+    stepEnv.hidden = false;
+  };
+
+  const showResults = (env) => {
+    modalTitle.textContent = `Pedras para ${env.label}`;
+    const filtered = STONES.filter((stone) => stone.environments.includes(env.key));
+
+    grid.innerHTML = '';
+    if (!filtered.length) {
+      const empty = document.createElement('p');
+      empty.className = 'stones-empty';
+      empty.textContent = 'Nenhuma pedra encontrada para esse ambiente.';
+      grid.appendChild(empty);
+    } else {
+      filtered.forEach((stone) => {
+        const card = document.createElement('div');
+        card.className = 'stone-card';
+
+        const img = document.createElement('img');
+        img.src = stoneUrl(stone.file);
+        img.alt = stone.name;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.width = 300;
+        img.height = 300;
+
+        const name = document.createElement('span');
+        name.className = 'stone-card-name';
+        name.textContent = stone.name;
+
+        card.appendChild(img);
+        card.appendChild(name);
+        grid.appendChild(card);
+      });
+    }
+
+    stepEnv.hidden = true;
+    stepResult.hidden = false;
+  };
+
+  STONE_ENVIRONMENTS.forEach((env) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'stones-env-chip';
+    chip.textContent = env.label;
+    chip.addEventListener('click', () => showResults(env));
+    envChips.appendChild(chip);
+  });
+
+  const openModal = () => {
+    showEnvStep();
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  flowButton.addEventListener('click', openModal);
+  backButton.addEventListener('click', showEnvStep);
+
+  modal.querySelectorAll('[data-stones-close]').forEach((element) => {
+    element.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+})();

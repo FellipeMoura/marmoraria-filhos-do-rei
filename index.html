@@ -120,10 +120,32 @@
         </div>
 
         <div class="inspiring-grid reveal" id="inspiringGrid"></div>
+
+        <div class="stones-cta reveal">
+          <button class="button button-light" type="button" id="stonesFlowButton">Ver pedras por ambiente</button>
+        </div>
       </div>
     </section>
 
     <!-- 5. CATÁLOGO -->
+
+    <div class="stones-modal" id="stonesModal" aria-hidden="true">
+      <div class="stones-modal-backdrop" data-stones-close></div>
+      <div class="stones-modal-box" role="dialog" aria-modal="true" aria-labelledby="stonesModalTitle">
+        <button class="stones-modal-close" type="button" data-stones-close aria-label="Fechar">&times;</button>
+
+        <div class="stones-step" id="stonesStepEnv">
+          <h3>Escolha o ambiente</h3>
+          <div class="stones-env-chips" id="stonesEnvChips"></div>
+        </div>
+
+        <div class="stones-step" id="stonesStepResult" hidden>
+          <button class="stones-back" type="button" id="stonesBackButton">&#8249; Voltar</button>
+          <h3 id="stonesModalTitle"></h3>
+          <div class="stones-grid" id="stonesGrid"></div>
+        </div>
+      </div>
+    </div>
 
     <div class="inspiring-modal" id="inspiringModal" aria-hidden="true">
       <div class="inspiring-modal-backdrop" data-inspiring-close></div>

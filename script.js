@@ -511,3 +511,58 @@ if (heroImage && !prefersReducedMotion) {
     if (event.key === 'Escape' && modal.classList.contains('open')) closeInspiringModal();
   });
 })();
+
+/* ==========================================================================
+   PEDRAS POR AMBIENTE — DADOS (Fase 1)
+   Ainda não conectado a nenhuma tela. Preparação para a próxima etapa:
+   o cliente escolhe um ambiente e vê as pedras recomendadas para ele.
+
+   Cada pedra é ligada aos ambientes em que é tecnicamente indicada, com
+   base nas propriedades típicas do seu material (dureza, porosidade,
+   sensibilidade a ácidos/manchas, exposição a sol e chuva):
+
+   - Granito: altíssima dureza e baixíssima porosidade; boa resistência a
+     ácidos, calor e intempérie. Indicado para todos os ambientes, incluindo
+     bancada de cozinha, área gourmet e área externa.
+   - Quartzito: dureza e resistência a ácidos parecidas com o granito, e
+     também estável ao sol e à chuva. Mesma amplitude de uso do granito.
+   - Mármore: mais poroso e sensível a ácidos (limão, vinagre, produtos de
+     limpeza) e ao sol/chuva prolongados. Indicado para ambientes internos
+     e de menor exposição a ácidos e intempérie (banheiro, lavabo, sala e
+     escadas internas); não recomendado para bancada de cozinha, área
+     gourmet ou área externa.
+   ========================================================================== */
+const STONES_FOLDER = 'assets/amostras/';
+
+const STONE_ENVIRONMENTS = ['Cozinha', 'Banheiro', 'Lavabo', 'Área Gourmet', 'Escadas', 'Sala/Decoração', 'Área Externa'];
+
+const ENVIRONMENTS_BY_MATERIAL = {
+  Granito: ['Cozinha', 'Banheiro', 'Lavabo', 'Área Gourmet', 'Escadas', 'Sala/Decoração', 'Área Externa'],
+  Quartzito: ['Cozinha', 'Banheiro', 'Lavabo', 'Área Gourmet', 'Escadas', 'Sala/Decoração', 'Área Externa'],
+  Mármore: ['Banheiro', 'Lavabo', 'Escadas', 'Sala/Decoração'],
+  Quartzo: ['Cozinha', 'Banheiro', 'Lavabo', 'Escadas', 'Sala/Decoração']
+};
+
+const STONES = [
+  { file: 'bege bahia amostra.webp', name: 'Bege Bahia', material: 'Granito' },
+  { file: 'bege bahia escovado amostra.webp', name: 'Bege Bahia Escovado', material: 'Granito' },
+  { file: 'branco carrara amostra.webp', name: 'Branco Carrara', material: 'Mármore' },
+  { file: 'branco dallas amostra.webp', name: 'Branco Dallas', material: 'Quartzito' },
+  { file: 'branco itaunas amostra.webp', name: 'Branco Itaúnas', material: 'Granito' },
+  { file: 'branco monte cristo.webp', name: 'Branco Monte Cristo', material: 'Granito' },
+  { file: 'branco parana amostra.webp', name: 'Branco Paraná', material: 'Granito' },
+  { file: 'branco prime amostra.webp', name: 'Branco Prime', material: 'Quartzito' },
+  { file: 'branco siena amostra.webp', name: 'Branco Siena', material: 'Granito' },
+  { file: 'calacatta gold amostra.webp', name: 'Calacatta Gold', material: 'Mármore' },
+  { file: 'cinza ocre amostra.webp', name: 'Cinza Ocre', material: 'Granito' },
+  { file: 'marrom imperador amostra.webp', name: 'Marrom Imperador', material: 'Mármore' },
+  { file: 'monte blanc amostra.webp', name: 'Monte Blanc', material: 'Quartzito' },
+  { file: 'preto indiano amostra.webp', name: 'Preto Indiano', material: 'Granito' },
+  { file: 'preto sao gabriel escovado amostra.webp', name: 'Preto São Gabriel Escovado', material: 'Granito' },
+  { file: 'preto são gabriel amostra.webp', name: 'Preto São Gabriel', material: 'Granito' },
+  { file: 'preto via lactea amostra.webp', name: 'Preto Via Láctea', material: 'Granito' },
+  { file: 'taj mahal amostra.webp', name: 'Taj Mahal', material: 'Quartzito' },
+  { file: 'verde ubatuba amostra.webp', name: 'Verde Ubatuba', material: 'Granito' },
+  { file: 'vermelho brasilia amostra.webp', name: 'Vermelho Brasília', material: 'Granito' },
+  { file: 'via lactea amostra.webp', name: 'Via Láctea', material: 'Granito' }
+].map((stone) => ({ ...stone, environments: ENVIRONMENTS_BY_MATERIAL[stone.material] }));

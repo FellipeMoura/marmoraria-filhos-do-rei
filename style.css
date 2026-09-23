@@ -282,15 +282,6 @@ p{margin:0;color:var(--muted)}
 .catalog-modal-prev{left:14px}
 .catalog-modal-next{right:14px}
 
-/* 6. ENCONTRE A PEDRA IDEAL */
-.finder-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
-.finder-chip{padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted);font-weight:700;font-size:14px;cursor:pointer;transition:background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease}
-.finder-chip:hover{transform:translateY(-1px);color:var(--ink)}
-.finder-chip.active{background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-color:transparent;color:var(--on-gold)}
-.finder-result{padding:32px;border-radius:24px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
-.finder-result p{font-size:17px;max-width:640px;color:var(--ink)}
-.finder-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-
 /* 7. TIMELINE */
 .timeline-section{background:#141414}
 .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:45px}
@@ -304,17 +295,6 @@ p{margin:0;color:var(--muted)}
 .timeline-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--gold);margin-bottom:22px;color:var(--on-gold);font-weight:700;font-size:14px}
 .timeline-step h3{margin-bottom:10px;font-size:19px}
 .timeline-step p{font-size:15px}
-
-/* 8. DIFERENCIAIS */
-.differentials-section{background:#0b0b0b}
-.differentials-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
-.differentials-text h2{margin-top:14px;max-width:420px}
-.differentials-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.differentials-list li{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line)}
-.differentials-list li:last-child{border-bottom:1px solid var(--line)}
-.differentials-list li span{font-family:"Playfair Display",Georgia,serif;font-size:20px;color:var(--gold-dark);flex:0 0 auto}
-.differentials-list li strong{display:block;font-size:17px;margin-bottom:4px}
-.differentials-list li p{font-size:14px}
 
 /* 10. ÁREA DE ATENDIMENTO */
 .service-area-section{padding:64px 0}
@@ -402,7 +382,6 @@ footer{padding:58px 0 90px}
   .cta-box{grid-template-columns:1fr}
   .story-card{grid-template-columns:1fr}
   .story-highlight{justify-self:start}
-  .differentials-grid{grid-template-columns:1fr}
   .timeline{grid-template-columns:repeat(2,1fr)}
   .catalog-card{flex:0 0 calc(50% - 9px)}
   .inspiring-grid{grid-template-columns:repeat(3,1fr)}

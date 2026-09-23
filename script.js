@@ -108,38 +108,6 @@ if (heroImage && !prefersReducedMotion) {
   }, { passive: true });
 }
 
-/* Encontre a pedra ideal */
-const FINDER_RECOMMENDATIONS = {
-  cozinha: 'Cozinhas costumam valorizar granitos e mármores claros do nosso catálogo, como Branco Dallas e Branco Carrara, que trazem clareza e resistência para o dia a dia.',
-  banheiro: 'Para banheiros, peças como Branco Siena e Branco Itaúnas ajudam a criar um visual clean e sofisticado.',
-  gourmet: 'Em áreas gourmet, pedras como Mont Blanc e Branco Dallas dão um toque elegante para bancadas e ilhas.',
-  escada: 'Em escadas, buscamos pedras resistentes e com bom acabamento — fale com a gente para indicar a melhor opção do catálogo para o seu projeto.',
-  bancada: 'Bancadas ganham personalidade com pedras como Branco Prime e Mont Blanc, disponíveis em nosso catálogo.',
-  nicho: 'Nichos costumam usar acabamentos como Branco Prime, trazendo um resultado clean e discreto.'
-};
-
-const finderChips = document.getElementById('finderChips');
-const finderText = document.getElementById('finderText');
-
-if (finderChips && finderText) {
-  const chips = Array.from(finderChips.querySelectorAll('.finder-chip'));
-
-  const selectRoom = (room) => {
-    chips.forEach((chip) => {
-      const isActive = chip.dataset.room === room;
-      chip.classList.toggle('active', isActive);
-      chip.setAttribute('aria-selected', String(isActive));
-    });
-    finderText.textContent = FINDER_RECOMMENDATIONS[room] || '';
-  };
-
-  chips.forEach((chip) => {
-    chip.addEventListener('click', () => selectRoom(chip.dataset.room));
-  });
-
-  selectRoom(chips[0].dataset.room);
-}
-
 /* Catálogo de Pedras — carrossel montado 100% via JS a partir de assets/carrossel/ */
 (() => {
   const CATALOG_FOLDER = 'assets/carrossel/';
